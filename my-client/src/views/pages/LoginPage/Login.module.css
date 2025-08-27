@@ -32,184 +32,228 @@
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
 }
 
-/* Title */
+/* Back button */
+.login__back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.login__back:hover {
+    color: #000;
+}
+
+.login__backIcon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Header */
+.login__header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
 .login__title {
     font-size: 28px;
     text-transform: uppercase;
-    margin: 8px 0 20px;
+    margin: 0 0 12px;
     color: #000;
-    text-align: center;
+    font-weight: 700;
 }
 
-/* Container dọc */
-.login__container {
-    display: flex;
-    flex-direction: column;
-    /* dọc hoàn toàn */
-    gap: 16px;
-    width: 100%;
+.login__subtitle {
+    color: #666;
+    margin: 0;
+    font-size: 16px;
 }
 
 /* Form */
 .login__form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
     width: 100%;
+    margin-bottom: 24px;
 }
 
-.login__form input {
-    padding: 10px;
-    border: 1px solid #aaa;
-    border-radius: 6px;
+.login__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.login__label {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.login__input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     width: 100%;
     box-sizing: border-box;
     background: #fff;
+    font-size: 16px;
+    transition: border-color 0.2s;
 }
 
-/* Nút submit */
-.login__btn {
-    padding: 10px;
+.login__input:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+/* Error and Success messages */
+.login__error {
+    background: #fee;
+    color: #c33;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #fcc;
+    font-size: 14px;
+}
+
+.login__success {
+    background: #efe;
+    color: #363;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #cfc;
+    font-size: 14px;
+}
+
+/* Submit button */
+.login__submit {
+    padding: 14px;
     background: #000;
     color: #ffd700;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-weight: 700;
+    font-size: 16px;
     cursor: pointer;
     width: 100%;
+    transition: background-color 0.2s;
 }
 
-.login__btn:hover {
+.login__submit:hover:not(:disabled) {
     background: #333;
 }
 
-/* ...giữ nguyên toàn bộ các rule trước đó... */
-
-/* Separator: —— ĐĂNG NHẬP BẰNG —— */
-.login__separator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    color: #000;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .2px;
-    margin: 4px 0 6px;
+.login__submit:disabled {
+    background: #ccc;
+    cursor: not-allowed;
 }
 
-.login__separator::before,
-.login__separator::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: rgba(0, 0, 0, .35);
-}
-
-/* 👇 Footnote “Chưa có tài khoản? Đăng ký ngay” */
-.login__footnote {
+/* Footer */
+.login__footer {
     text-align: center;
+    margin-bottom: 24px;
+}
+
+.login__text {
+    color: #666;
+    margin: 0;
     font-size: 14px;
-    color: #111;
-    margin-top: 4px;
 }
 
 .login__link {
     color: #000;
-    font-weight: 700;
-    text-underline-offset: 3px;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 .login__link:hover {
-    opacity: .85;
     text-decoration: underline;
 }
 
+/* Social login */
+.login__social {
+    text-align: center;
+}
 
-/* Social buttons */
-.login__btnSocial {
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-weight: 700;
-    cursor: pointer;
+.login__socialText {
+    color: #666;
+    margin: 0 0 16px;
+    font-size: 14px;
+    position: relative;
+}
 
+.login__socialText::before,
+.login__socialText::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background: #ddd;
+}
+
+.login__socialText::before {
+    left: -80px;
+}
+
+.login__socialText::after {
+    right: -80px;
+}
+
+.login__socialButtons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.login__socialButton {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
 }
 
-.login__icon {
+.login__socialButton:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
+}
+
+.login__socialIcon {
     width: 18px;
     height: 18px;
-    display: block;
-    color: #fff;
 }
 
-.facebook {
-    background: #1877f2;
-}
-
-.google {
-    background: #db4437;
-}
-
-.facebook:hover {
-    background: #1667d9;
-}
-
-.google:hover {
-    background: #c23b31;
-}
-
-/* Nút Back */
-.login__back {
-    position: absolute;
-    top: 10px;
-    left: 12px;
-
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-
-    padding: 6px 10px;
-    border-radius: 999px;
-    border: 1px solid rgba(0, 0, 0, .08);
-
-    background: rgba(255, 255, 255, .65);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-
-    color: #000;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
-    transition: transform .15s ease, background .15s ease;
-}
-
-.login__back:hover {
-    background: rgba(255, 255, 255, .9);
-    transform: translateY(-1px);
-}
-
-.login__back:active {
-    transform: translateY(0);
-}
-
-.login__backIcon {
-    width: 16px;
-    height: 16px;
-    display: block;
-    color: currentColor;
-}
-
-/* Mobile */
-@media (max-width: 420px) {
+/* Responsive */
+@media (max-width: 600px) {
     .login__card {
-        padding: 24px 16px;
+        padding: 20px 16px;
+    }
+    
+    .login__title {
+        font-size: 24px;
+    }
+    
+    .login__socialText::before,
+    .login__socialText::after {
+        width: 30px;
+    }
+    
+    .login__socialText::before {
+        left: -50px;
+    }
+    
+    .login__socialText::after {
+        right: -50px;
     }
 }

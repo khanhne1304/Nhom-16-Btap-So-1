@@ -3,29 +3,16 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './Home.module.css';
 import ProductCard from '../../components/productCard/productCard';
 import Footer from '../../components/HomePageItems/Footer/HomePageFooter';
-import { fetchProducts } from '../../../services/products'; // <-- thêm dòng này
+import { fetchProducts } from '../../../services/products';
+import { useAuth } from '../../../hooks/useAuth';
 
 export default function Home() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-
-  // ---- Auth state (Hello, User / Logout) ----
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) {
-      try {
-        setUser(JSON.parse(savedUser));
-      } catch {
-        localStorage.removeItem('user');
-      }
-    }
-  }, []);
+  const { user, logout } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setUser(null);
+    logout();
     navigate('/login');
   };
 

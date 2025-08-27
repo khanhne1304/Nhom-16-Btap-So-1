@@ -1,0 +1,165 @@
+/* === Font chung === */
+.page {
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  background: #fffbe8;
+}
+
+/* === NAVBAR === */
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffd700;
+  padding: 20px 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+  min-height: 40px;
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 20px;
+  color: #000;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 0 20px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  padding: 6px 0;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* === CONTENT === */
+.wrap {
+  max-width: 960px;
+  margin: 28px auto;
+  padding: 0 16px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.title {
+  margin: 0 0 12px 0;
+  color: #000;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.alertError {
+  background: #ffe5e5;
+  color: #b00020;
+  border: 1px solid #f1b3b3;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin: 8px 0 12px;
+}
+
+.info {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.avatar {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+
+.fields {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  row-gap: 8px;
+  column-gap: 12px;
+}
+
+.row {
+  display: contents;
+}
+
+.label {
+  color: #333;
+  font-weight: 600;
+}
+
+.value {
+  color: #000;
+}
+
+/* === BUTTONS === */
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.btn {
+  padding: 6px 12px;
+  border: 1px solid #000;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #000;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.btnPrimary {
+  background: #000;
+  color: #ffd700;
+  border-color: #000;
+}
+
+.btnPrimary:hover {
+  background: #333;
+}
+
+.btnSecondary {
+  background: transparent;
+  color: #000;
+  border-color: #000;
+}
+
+.btnSecondary:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.hint {
+  color: #444;
+  font-size: 13px;
+  margin-top: 10px;
+}

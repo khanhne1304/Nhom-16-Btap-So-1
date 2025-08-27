@@ -1,9 +1,120 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../hooks/useAuth';
 import styles from './Login.module.css';
 
-const BASE_URL =
-  import.meta?.env?.VITE_API_BASE_URL || 'http://localhost:5000/api';
+export default function Login() {
+  const navigate = useNavigate();
+  const { login, loading, error, clearError } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [ok, setOk] = useState('');
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    clearError();
+    setOk('');
+
+    if (!email || !password) {
+      return;
+    }
+
+    try {
+      await login({ email: email.trim(), password });
+      setOk('Đăng nhập thành công! Đang chuyển hướng...');
+      // chờ 1 giây rồi chuyển trang profile
+      setTimeout(() => navigate('/profile'), 1000);
+    } catch (e) {
+      // Error is handled by Redux state
+    }
+  };
+
+  return (
+    <div className={styles.loginPage}>
+      <div className={styles.login}>
+        <div className={styles.login__card}>
+          <Link to='/' className={styles.login__back}>
+            <BackIcon className={styles.login__backIcon} />
+            <span>Về trang chủ</span>
+          </Link>
+
+          <div className={styles.login__header}>
+            <h1 className={styles.login__title}>Đăng nhập</h1>
+            <p className={styles.login__subtitle}>
+              Chào mừng bạn quay trở lại! Vui lòng đăng nhập để tiếp tục.
+            </p>
+          </div>
+
+          <form onSubmit={onSubmit} className={styles.login__form}>
+            <div className={styles.login__field}>
+              <label htmlFor='email' className={styles.login__label}>
+                Email
+              </label>
+              <input
+                id='email'
+                type='email'
+                className={styles.login__input}
+                placeholder='Nhập email của bạn'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className={styles.login__field}>
+              <label htmlFor='password' className={styles.login__label}>
+                Mật khẩu
+              </label>
+              <input
+                id='password'
+                type='password'
+                className={styles.login__input}
+                placeholder='Nhập mật khẩu của bạn'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            {error && <div className={styles.login__error}>{error}</div>}
+            {ok && <div className={styles.login__success}>{ok}</div>}
+
+            <button
+              type='submit'
+              className={styles.login__submit}
+              disabled={loading}
+            >
+              {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
+            </button>
+          </form>
+
+          <div className={styles.login__footer}>
+            <p className={styles.login__text}>
+              Chưa có tài khoản?{' '}
+              <Link to='/register' className={styles.login__link}>
+                Đăng ký ngay
+              </Link>
+            </p>
+          </div>
+
+          <div className={styles.login__social}>
+            <p className={styles.login__socialText}>Hoặc đăng nhập với</p>
+            <div className={styles.login__socialButtons}>
+              <button className={styles.login__socialButton}>
+                <GoogleIcon className={styles.login__socialIcon} />
+                Google
+              </button>
+              <button className={styles.login__socialButton}>
+                <FacebookIcon className={styles.login__socialIcon} />
+                Facebook
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function FacebookIcon({ className }) {
   return (
@@ -15,6 +126,7 @@ function FacebookIcon({ className }) {
     </svg>
   );
 }
+
 function GoogleIcon({ className }) {
   return (
     <svg className={className} viewBox='0 0 48 48' aria-hidden='true'>
@@ -37,6 +149,7 @@ function GoogleIcon({ className }) {
     </svg>
   );
 }
+
 function BackIcon({ className }) {
   return (
     <svg className={className} viewBox='0 0 24 24' aria-hidden='true'>
@@ -45,124 +158,5 @@ function BackIcon({ className }) {
         d='M20 11H7.83l4.58-4.59L11 5l-7 7 7 7 1.41-1.41L7.83 13H20v-2z'
       />
     </svg>
-  );
-}
-
-export default function Login() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [err, setErr] = useState('');
-  const [ok, setOk] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    setErr('');
-    setOk('');
-
-    if (!email || !password) {
-      return setErr('Vui lòng nhập email và mật khẩu');
-    }
-
-    setLoading(true);
-    try {
-      const res = await fetch(`${BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim(), password }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data?.message || 'Đăng nhập thất bại');
-      }
-
-      if (data?.token) localStorage.setItem('token', data.token);
-      if (data?.user) localStorage.setItem('user', JSON.stringify(data.user));
-
-      setOk('Đăng nhập thành công! Đang chuyển hướng...');
-      // chờ 1 giây rồi chuyển trang
-      setTimeout(() => navigate('/'), 1000);
-    } catch (e) {
-      setErr(e.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className={styles.loginPage}>
-      <div className={styles.login}>
-        <div className={styles.login__card}>
-          <Link to='/' className={styles.login__back}>
-            <BackIcon className={styles.login__backIcon} />
-            <span>Về trang chủ</span>
-          </Link>
-
-          <h1 className={styles.login__title}>Đăng nhập</h1>
-
-          {/* Thông báo */}
-          {err && <div className={styles.login__alertError}>{err}</div>}
-          {ok && <div className={styles.login__alertSuccess}>{ok}</div>}
-
-          <div className={styles.login__container}>
-            <form className={styles.login__form} onSubmit={onSubmit}>
-              <input
-                type='email'
-                placeholder='Email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete='email'
-                required
-              />
-              <input
-                type='password'
-                placeholder='Mật khẩu'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete='current-password'
-                required
-              />
-              <button
-                type='submit'
-                className={styles.login__btn}
-                disabled={loading}
-              >
-                {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
-              </button>
-            </form>
-
-            <div className={styles.login__separator}>
-              <span>Đăng nhập bằng</span>
-            </div>
-
-            <button
-              type='button'
-              className={`${styles.login__btnSocial} ${styles.facebook}`}
-              disabled
-            >
-              <FacebookIcon className={styles.login__icon} />
-              <span>Facebook (sắp có)</span>
-            </button>
-            <button
-              type='button'
-              className={`${styles.login__btnSocial} ${styles.google}`}
-              disabled
-            >
-              <GoogleIcon className={styles.login__icon} />
-              <span>Google (sắp có)</span>
-            </button>
-
-            <div className={styles.login__footnote}>
-              Chưa có tài khoản?{' '}
-              <Link to='/register' className={styles.login__link}>
-                Đăng ký ngay
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
