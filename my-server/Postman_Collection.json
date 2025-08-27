@@ -1,0 +1,439 @@
+{
+  "info": {
+    "name": "Music Store API Collection",
+    "description": "Collection để test API của Music Store - bao gồm Authentication và Products",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nguyễn Văn A\",\n  \"email\": \"nguyenvana@example.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            },
+            "description": "Đăng ký tài khoản mới"
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Đăng nhập với tài khoản có sẵn"
+          },
+          "response": []
+        },
+        {
+          "name": "Login with New User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"nguyenvana@example.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Đăng nhập với tài khoản vừa đăng ký"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nguyễn Văn A Updated\",\n  \"email\": \"nguyenvana@example.com\",\n  \"phone\": \"0123456789\",\n  \"address\": \"123 Đường ABC, Quận 1, TP.HCM\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "profile"]
+            },
+            "description": "Cập nhật thông tin hồ sơ người dùng"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"nguyenvana@example.com\",\n  \"otp\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/verify-otp",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "verify-otp"]
+            },
+            "description": "Xác thực OTP để hoàn tất đăng ký"
+          },
+          "response": []
+        },
+        {
+          "name": "Resend OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"nguyenvana@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/resend-otp",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "resend-otp"]
+            },
+            "description": "Gửi lại mã OTP"
+          },
+          "response": []
+        },
+        {
+          "name": "Send Logout OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"nguyenvana@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/logout-otp",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "logout-otp"]
+            },
+            "description": "Gửi OTP để xác minh đăng xuất"
+          },
+          "response": []
+        },
+                 {
+           "name": "Verify Logout OTP",
+           "request": {
+             "method": "POST",
+             "header": [
+               {
+                 "key": "Content-Type",
+                 "value": "application/json"
+               }
+             ],
+             "body": {
+               "mode": "raw",
+               "raw": "{\n  \"email\": \"nguyenvana@example.com\",\n  \"otp\": \"123456\"\n}"
+             },
+             "url": {
+               "raw": "{{baseUrl}}/api/auth/verify-logout-otp",
+               "host": ["{{baseUrl}}"],
+               "path": ["api", "auth", "verify-logout-otp"]
+             },
+             "description": "Xác thực OTP để hoàn tất đăng xuất"
+           },
+           "response": []
+         },
+         {
+           "name": "Debug Pending Logouts",
+           "request": {
+             "method": "GET",
+             "header": [],
+             "url": {
+               "raw": "{{baseUrl}}/api/auth/debug-pending-logouts",
+               "host": ["{{baseUrl}}"],
+               "path": ["api", "auth", "debug-pending-logouts"]
+             },
+             "description": "Debug endpoint để kiểm tra pending logouts (chỉ dùng để test)"
+           },
+           "response": []
+         }
+      ],
+      "description": "Các API endpoints cho authentication"
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products"]
+            },
+            "description": "Lấy danh sách tất cả sản phẩm"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Products by Category - Guitar",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products?category=guitar",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "guitar"
+                }
+              ]
+            },
+            "description": "Lọc sản phẩm theo danh mục Guitar"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Products by Category - Piano",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products?category=piano",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "piano"
+                }
+              ]
+            },
+            "description": "Lọc sản phẩm theo danh mục Piano"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Products by Brand - YAMAHA",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products?brand=YAMAHA",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products"],
+              "query": [
+                {
+                  "key": "brand",
+                  "value": "YAMAHA"
+                }
+              ]
+            },
+            "description": "Lọc sản phẩm theo thương hiệu YAMAHA"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Products - Guitar",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products?q=guitar",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "guitar"
+                }
+              ]
+            },
+            "description": "Tìm kiếm sản phẩm có từ 'guitar'"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Products - Yamaha",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products?q=yamaha",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "yamaha"
+                }
+              ]
+            },
+            "description": "Tìm kiếm sản phẩm có từ 'yamaha'"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product by Slug - Yamaha F310",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products/guitar-acoustic-yamaha-f310",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products", "guitar-acoustic-yamaha-f310"]
+            },
+            "description": "Lấy chi tiết sản phẩm Yamaha F310"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product by Slug - Fender Stratocaster",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products/guitar-electric-fender-stratocaster",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products", "guitar-electric-fender-stratocaster"]
+            },
+            "description": "Lấy chi tiết sản phẩm Fender Stratocaster"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product by Slug - Roland FP-30X",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products/piano-digital-roland-fp30x",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products", "piano-digital-roland-fp30x"]
+            },
+            "description": "Lấy chi tiết sản phẩm Roland FP-30X"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product by Slug - Kawai GL-10",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products/piano-acoustic-kawai-gl10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products", "piano-acoustic-kawai-gl10"]
+            },
+            "description": "Lấy chi tiết sản phẩm Kawai GL-10"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Non-existent Product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products/non-existent-product",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products", "non-existent-product"]
+            },
+            "description": "Test trường hợp sản phẩm không tồn tại"
+          },
+          "response": []
+        }
+      ],
+      "description": "Các API endpoints cho products"
+    },
+    {
+      "name": "Server Health Check",
+      "item": [
+        {
+          "name": "Server Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            },
+            "description": "Kiểm tra trạng thái server"
+          },
+          "response": []
+        }
+      ],
+      "description": "Kiểm tra trạng thái server"
+    }
+  ]
+}
