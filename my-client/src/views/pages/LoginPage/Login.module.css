@@ -1,0 +1,215 @@
+/* Nền vàng + chấm mờ */
+.loginPage {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    display: flex;
+    background: #fffbe8;
+}
+
+/* Căn card giữa màn hình */
+.login {
+    font-family: Arial, sans-serif;
+    flex: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* Card mờ */
+.login__card {
+    position: relative;
+    width: min(560px, calc(100% - 48px));
+    border-radius: 16px;
+    padding: 28px 24px;
+
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px) saturate(130%);
+    -webkit-backdrop-filter: blur(10px) saturate(130%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+/* Title */
+.login__title {
+    font-size: 28px;
+    text-transform: uppercase;
+    margin: 8px 0 20px;
+    color: #000;
+    text-align: center;
+}
+
+/* Container dọc */
+.login__container {
+    display: flex;
+    flex-direction: column;
+    /* dọc hoàn toàn */
+    gap: 16px;
+    width: 100%;
+}
+
+/* Form */
+.login__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.login__form input {
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+/* Nút submit */
+.login__btn {
+    padding: 10px;
+    background: #000;
+    color: #ffd700;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+}
+
+.login__btn:hover {
+    background: #333;
+}
+
+/* ...giữ nguyên toàn bộ các rule trước đó... */
+
+/* Separator: —— ĐĂNG NHẬP BẰNG —— */
+.login__separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .2px;
+    margin: 4px 0 6px;
+}
+
+.login__separator::before,
+.login__separator::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(0, 0, 0, .35);
+}
+
+/* 👇 Footnote “Chưa có tài khoản? Đăng ký ngay” */
+.login__footnote {
+    text-align: center;
+    font-size: 14px;
+    color: #111;
+    margin-top: 4px;
+}
+
+.login__link {
+    color: #000;
+    font-weight: 700;
+    text-underline-offset: 3px;
+}
+
+.login__link:hover {
+    opacity: .85;
+    text-decoration: underline;
+}
+
+
+/* Social buttons */
+.login__btnSocial {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.login__icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    color: #fff;
+}
+
+.facebook {
+    background: #1877f2;
+}
+
+.google {
+    background: #db4437;
+}
+
+.facebook:hover {
+    background: #1667d9;
+}
+
+.google:hover {
+    background: #c23b31;
+}
+
+/* Nút Back */
+.login__back {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, .08);
+
+    background: rgba(255, 255, 255, .65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
+    transition: transform .15s ease, background .15s ease;
+}
+
+.login__back:hover {
+    background: rgba(255, 255, 255, .9);
+    transform: translateY(-1px);
+}
+
+.login__back:active {
+    transform: translateY(0);
+}
+
+.login__backIcon {
+    width: 16px;
+    height: 16px;
+    display: block;
+    color: currentColor;
+}
+
+/* Mobile */
+@media (max-width: 420px) {
+    .login__card {
+        padding: 24px 16px;
+    }
+}

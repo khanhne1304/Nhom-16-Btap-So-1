@@ -1,0 +1,123 @@
+.footer {
+  background: #141414;
+  color: #eaeaea;
+  font-family: inherit;
+}
+
+.footer__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 16px 20px;
+}
+
+/* ===== Cột trên ===== */
+.footer__cols {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.footer__title {
+  color: #ffd000;
+  font-weight: 800;
+  letter-spacing: .3px;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.footer__titleSpacing { margin-top: 18px; }
+
+.footer__list { list-style: none; padding: 0; margin: 0; }
+.footer__list li { margin: 6px 0; }
+
+.footer__list a {
+  color: #dcdcdc;
+  text-decoration: none;
+}
+
+.footer__list a:hover { color: #fff; text-decoration: underline; }
+
+.footer__highlight { color: #ffd000; }
+
+/* hotline (màu đỏ) */
+.footer__hotline { color: #ff5a5a; text-decoration: none; }
+.footer__hotline:hover { text-decoration: underline; }
+
+/* Social */
+.footer__social {
+  display: flex;
+  gap: 10px;
+  margin: 6px 0 0;
+}
+.footer__socialIcon {
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 800; text-decoration: none;
+}
+.fb { background: #1877f2; }
+.yt { background: #ff0000; }
+.ig { background: #e1306c; }
+.za { background: #0a67df; }
+
+/* ===== Hàng dưới ===== */
+.footer__divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,.18);
+  margin: 20px 0;
+}
+
+.footer__bottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.footer__companyTitle {
+  color: #ffd000;
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.footer__company p { margin: 6px 0; }
+
+/* Chips thanh toán & chứng nhận */
+.footer__chipTitle {
+  margin: 2px 0 8px;
+  font-weight: 800;
+  color: #eaeaea;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: .2px;
+}
+
+.footer__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  background: #262626;
+  color: #f0f0f0;
+  border: 1px solid #333;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.footer__copy {
+  margin-top: 18px;
+  font-size: 12px;
+  color: #bdbdbd;
+  text-align: center;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .footer__cols { grid-template-columns: repeat(2, 1fr); }
+  .footer__bottom { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .footer__cols { grid-template-columns: 1fr; }
+}

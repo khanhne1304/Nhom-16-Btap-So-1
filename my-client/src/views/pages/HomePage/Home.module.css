@@ -1,0 +1,204 @@
+/* === Font chung === */
+.home {
+  font-family: var(--font-sans);
+}
+
+/* === NAVBAR === */
+.home__navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffd700;
+  padding: 20px 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+  min-height: 40px;
+}
+
+/* Logo */
+.home__logo {
+  font-weight: 800;
+  font-size: 20px;
+  color: #000;
+}
+
+/* Menu chính */
+.home__menu {
+  display: flex;
+  align-items: center; /* 👈 đồng bộ theo trục dọc */
+  gap: 24px;
+  margin: 0 20px;
+  flex: 1;
+  justify-content: center;
+}
+
+/* Mỗi item đều có wrapper để không lệch với dropdown */
+.home__menuItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Style chung cho mọi link trên navbar (đồng nhất chiều cao) */
+.home__menu a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+  font-size: 20px;
+  display: inline-flex; /* 👈 */
+  align-items: center; /* 👈 */
+  line-height: 1; /* 👈 */
+  padding: 6px 0; /* 👈 cùng padding cho tất cả */
+}
+
+/* ===== Dropdown brand theo danh mục ===== */
+.home__submenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 180px;
+  background: #fff;
+  color: #111;
+  border: 1px solid #e9e9e9;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 50;
+}
+
+/* Hiện dropdown khi hover mục menu */
+.home__menuItem:hover .home__submenu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Link brand trong dropdown */
+.home__submenu a {
+  text-decoration: none;
+  color: #111;
+  padding: 8px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.home__submenu a:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+.home__submenuEmpty {
+  padding: 8px 10px;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+/* === Search === */
+.home__searchBox {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+}
+.home__searchBox input {
+  padding: 6px 10px;
+  border: 1px solid #aaa;
+  border-radius: 4px 0 0 4px;
+}
+.home__searchBox button {
+  padding: 6px 12px;
+  border: none;
+  background: #000;
+  color: #ffd700;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+.home__searchBox button:hover {
+  background: #333;
+}
+
+/* === Auth buttons === */
+.home__authButtons {
+  display: flex;
+  gap: 8px;
+}
+.home__btn {
+  padding: 6px 12px;
+  border: 1px solid #000;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #000;
+}
+.home__btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.home__btn--primary {
+  background: #000;
+  color: #ffd700;
+  border-color: #000;
+}
+.home__btn--primary:hover {
+  background: #333;
+}
+
+/* === CONTENT === */
+.home__content {
+  padding: 24px;
+  background: #fffbe8;
+}
+.home__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.home__section {
+  margin-bottom: 28px;
+}
+.home__sectionTitle {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 8px 0 16px;
+  color: #111;
+}
+.home__sectionTitleSale {
+  color: #b45309;
+}
+
+/* Lưới sản phẩm: tối đa 3 cột */
+.home__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .home__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .home__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home__empty {
+  padding: 16px;
+  background: #fff;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  text-align: center;
+  color: #666;
+}
+.home__user {
+  font-weight: 600;
+  color: #333;
+  padding: 0 12px;
+}
